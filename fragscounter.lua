@@ -10,29 +10,29 @@ function PLUGIN:Init()
 end
 
 function PLUGIN:LoadConfig()
-	local b, res = config.Read("fragscounter")
-	self.Config = res or {}
-	if (not b) then
-		self:LoadDefaultConfig()
-		if (res) then config.Save("fragscounter") end
-	end
+    local b, res = config.Read("fragscounter")
+    self.Config = res or {}
+    if (not b) then
+        self:LoadDefaultConfig()
+        if (res) then config.Save("fragscounter") end
+    end
 end
 
 function PLUGIN:LoadDefaultConfig()
-	self.Config.doublekill_message = "Player %s did doublekill!"
-	self.Config.rampage_message = "Player %s is on rampage!! Try to stop him?"
+    self.Config.doublekill_message = "Player %s did doublekill!"
+    self.Config.rampage_message = "Player %s is on rampage!! Try to stop him?"
     self.Config.ultrakill_message = "Player %s scored an ultrakill!"
-	self.Config.triplekill_message = "Player %s killed three players in a row!"
+    self.Config.triplekill_message = "Player %s killed three players in a row!"
     self.Config.stop_message = "Player %s1 stopped %s2 who was on rampage!"
 end
 
 function PLUGIN:BroadcastNotice(msg)
-	local netUsers = rust.GetAllNetUsers()
-	
-	for k,netUser in pairs(netUsers)
-	do
-		rust.Notice( netUser, msg)
-	end
+    local netUsers = rust.GetAllNetUsers()
+
+    for k,netUser in pairs(netUsers)
+    do
+        rust.Notice( netUser, msg)
+    end
 end
 
 function PLUGIN:OnKilled (takedamage, dmg)
