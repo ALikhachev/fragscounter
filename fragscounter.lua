@@ -90,7 +90,7 @@ function PLUGIN:OnKilled (takedamage, dmg)
                 end
             end
         end
-        if (self.Config.economy_enabled) then
+        if (self.Config.economy_enabled and fragsc >= 2) then
             money = self.Config.money_for_kill_base + self.Config.money_for_kill_base * fragsc * 0.05
             economy:giveMoneyTo(player, money)
             rust.SendChatToUser(player, "You got " .. money .. " dollars.")
